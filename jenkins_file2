@@ -5,13 +5,16 @@ pipeline{
     }
     stages{
         stage("MVN Test"){
-            checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/bpung05/jenkins_project2']])
+            steps{
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/bpung05/jenkins_project2']])
 
-            bat "mvn -version"
+                bat "mvn -version"
 
-            dir("C:/Pung/Baylor/Software Engineer 2/jenkins_proj/jenkins_proj2/jenkins_proj"){
-                bat "mvn clean install"
+                dir("C:/Pung/Baylor/Software Engineer 2/jenkins_proj/jenkins_proj2/jenkins_proj"){
+                    bat "mvn clean install"
+                }
             }
+            
         }
 
         stage("Build the basic docker file"){
